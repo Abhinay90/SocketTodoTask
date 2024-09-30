@@ -11,7 +11,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 function Login() {
-  // const {createTodo}=useSocket();
+  const {setAuth}=useSocket();
   const [email,setEmail]=useState("");
   const [password,setPassword]=useState("");
   const [errorE,setErrorE]=useState(null);
@@ -29,6 +29,7 @@ function Login() {
                 if(response.status===200){
                   console.log(response)   
                         localStorage.setItem("token",response.data.result)
+                        setAuth(response.data.result);
                            navigate("/");
                    }
               }catch(error){
